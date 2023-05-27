@@ -30,7 +30,21 @@ models:
 
         - name: valor_total_multa
           description: Valor total, em dólares, das multas
-          
+
+        - name: data_vencimento
+          description: Data de vencimento da compra
+          tests:
+            - not_null
+
+        - name: status
+          description: Status do pagamento. [Pago, Pendente]
+          tests:
+            - accepted_values:
+                values: ['Pago', 'Pendente']
+
+        - name: quantidade_transacoes
+          description: Quantidade de transações feitas para o agrupamento data de vencimento, categoria e status
+
         - name: carregado_em
           description: Data e hora que os dados foram carregados na tabela
           tests:
