@@ -1,0 +1,34 @@
+version: 2
+
+seeds:
+  - name: seed_clientes
+    description: |
+      Tabela contendo o cadastro dos clientes
+    config:
+      enabled: true
+      tags:
+        - seed
+
+      database: desafio-ebanx
+      alias: clientes
+
+      persist_docs:
+        relation: true
+        columns: true
+
+      full_refresh: true
+      column_types:
+        id: integer
+        nome: string
+        pais: string
+        data_nascimento: string
+
+    columns:
+        - name: id
+          description: id único do cliente
+        - name: nome
+          description: Nome do cliente
+        - name: pais
+          description: País do cliente
+        - name: data_nascimento
+          description: Data de nascimento do cliente, sem tratamento

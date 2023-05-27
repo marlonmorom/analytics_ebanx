@@ -1,0 +1,51 @@
+---
+version: 2
+
+models:
+  - name: silver_clientes
+    description: Tabela contendo cadastro dos clientes
+    config:
+      enabled: true
+      tags:
+        - silver
+
+      database: desafio-ebanx
+      dataset: silver
+      materialized: table
+      alias: clientes
+
+      persist_docs:
+        relation: true
+        columns: true
+
+    columns:
+        - name: id
+          description: id único do cliente
+          tests:
+            - not_null
+            - unique
+            
+        - name: nome
+          description: Nome do cliente
+          tests:
+            - not_null
+
+        - name: pais
+          description: País do cliente
+          tests:
+            - not_null
+              
+        - name: data_nascimento
+          description: Data de nascimento do cliente, no formato YYYY-MM-DD
+          tests:
+            - not_null
+
+        - name: idade
+          description: Idade do cliente, em anos, no momento do carregamento na tabela
+          tests:
+            - not_null
+
+        - name: carregado_em
+          description: Data e hora que os dados foram carregados na tabela
+          tests:
+            - not_null

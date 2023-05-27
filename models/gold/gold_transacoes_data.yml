@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: gold_transacoes_data
+    description: |
+      Tabela agregada que traz a quantidade de e valor total em dólar das compras, agrupadas por categoria, status e data
+    config:
+      enabled: true
+      tags:
+        - gold
+
+      database: desafio-ebanx
+      dataset: gold
+      materialized: table
+      alias: transacoes_data
+
+      persist_docs:
+        relation: true
+        columns: true
+
+
+    columns:
+        - name: categoria
+          description: Categoria da compra
+          tests:
+            - not_null
+
+        - name: valor_total_dolar
+          description: Valor total, em dólares, das compras feitas
+
+        - name: valor_total_multa
+          description: Valor total, em dólares, das multas
+          
+        - name: carregado_em
+          description: Data e hora que os dados foram carregados na tabela
+          tests:
+            - not_null

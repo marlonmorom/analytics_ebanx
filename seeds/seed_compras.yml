@@ -1,0 +1,47 @@
+version: 2
+
+seeds:
+  - name: seed_compras
+    description: |
+      Tabela contendo os dados de compras
+    config:
+      enabled: true
+      tags:
+        - seed
+
+      database: desafio-ebanx
+      alias: compras
+      
+      persist_docs:
+        relation: true
+        columns: true
+
+      full_refresh: true
+      column_types:
+        id: integer
+        id_cliente: integer
+        data_vencimento: date
+        data_pagamento: string
+        valor: float64
+        categoria: string
+        moeda: string
+        status: string
+
+    columns:
+        - name: id
+          description: id único da compra
+        - name: id_cliente
+          description: id único do cliente
+        - name: data_vencimento
+          description: Data de vencimento da compra
+        - name: data_pagamento
+          description: Data de pagamento da compra
+        - name: valor
+          description: Valor da compra
+        - name: categoria
+          description: Categoria da compra
+        - name: moeda
+          description: Moeda em que a compra foi efetuada
+        - name: status
+          description: Status do pagamento. [Pago, Pendente]
+          

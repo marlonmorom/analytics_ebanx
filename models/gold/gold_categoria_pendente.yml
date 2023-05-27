@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: gold_categoria_pendente
+    description: |
+      Tabela agregada que traz o valor total em dólar das compras com pagamento pendente, agrupadas por categoria
+    config:
+      enabled: true
+      tags:
+        - gold
+
+      database: desafio-ebanx
+      dataset: gold
+      materialized: table
+      alias: categoria_pendente
+
+      persist_docs:
+        relation: true
+        columns: true
+
+
+    columns:
+        - name: categoria
+          description: Categoria da compra
+          tests:
+            - not_null
+            - unique
+
+        - name: valor_total_dolar
+          description: Valor total, em dólares, das compras pendentes por categoria
+          
+        - name: carregado_em
+          description: Data e hora que os dados foram carregados na tabela
+          tests:
+            - not_null

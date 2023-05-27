@@ -1,0 +1,47 @@
+version: 2
+
+seeds:
+  - name: seed_cambio
+    description: |
+      Tabela com valores cambiais tendo como parâmetro o dólar, por mês
+    config:
+      enabled: true
+      tags:
+        - seed
+
+      database: desafio-ebanx
+      alias: cambio
+
+      persist_docs:
+        relation: true
+        columns: true
+
+      full_refresh: true
+      column_types:
+        mes: string
+        BRL: float64
+        EUR: float64
+        CNY: float64
+        EGP: float64
+        KRW: float64
+        CLP: float64
+        MXN: float64
+
+
+    columns:
+        - name: mes
+          description: Mês ao que os valores cambiais se referem
+        - name: BRL
+          description: O valor, em dólar, que cada real vale, para o mês de referência
+        - name: EUR
+          description: O valor, em dólar, que cada euro vale, para o mês de referência
+        - name: CNY
+          description: O valor, em dólar, que cada yuan vale, para o mês de referência
+        - name: EGP
+          description: O valor, em dólar, que cada libra egípcia vale, para o mês de referência
+        - name: KRW
+          description: O valor, em dólar, que cada won sul-coreano vale, para o mês de referência
+        - name: CLP
+          description: O valor, em dólar, que cada peso chileno vale, para o mês de referência
+        - name: MXN
+          description: O valor, em dólar, que cada peso mexicano vale, para o mês de referência

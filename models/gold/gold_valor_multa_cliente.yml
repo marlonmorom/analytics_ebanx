@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: gold_valor_multa_cliente
+    description: |
+      Tabela agregada que traz o valor total em dólar das compras realizadas por cliente
+
+    config:
+      enabled: true
+      tags:
+        - gold
+
+      database: desafio-ebanx
+      dataset: gold
+      materialized: table
+      alias: valor_multa_cliente
+
+      persist_docs:
+        relation: true
+        columns: true
+
+
+    columns:
+        - name: nome
+          description: Nome do cliente
+          tests:
+            - not_null
+
+        - name: pais
+          description: País do cliente
+          tests:
+            - not_null
+
+        - name: valor_total_multas
+          description: Valor total, em dólar, das multas devidas pelo cliente
+
+        - name: idade
+          description: Idade do cliente, em anos, no momento do carregamento na tabela
+          tests:
+            - not_null
+
+        - name: carregado_em
+          description: Data e hora que os dados foram carregados na tabela
+          tests:
+            - not_null

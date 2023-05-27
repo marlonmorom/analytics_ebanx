@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: gold_categoria_atraso_multa
+    description: |
+      Tabela agregada que traz os valores de multas, em dólar, de acordo com cada categoria da compra
+    config:
+      enabled: true
+      tags:
+        - gold
+
+      database: desafio-ebanx
+      dataset: gold
+      materialized: table
+      alias: categoria_atraso_multa
+
+      persist_docs:
+        relation: true
+        columns: true
+
+
+    columns:
+        - name: categoria
+          description: Categoria da compra
+          tests:
+            - not_null
+            - unique
+
+        - name: valor_total_multas
+          description: Valor total de multas, em dólar, correspondente à categoria de compra
+
+        - name: carregado_em
+          description: Data e hora que os dados foram carregados na tabela
+          tests:
+            - not_null

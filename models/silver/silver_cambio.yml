@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: silver_cambio
+    description: |
+      Tabela com valores cambiais tendo como parâmetro o dólar, por mês
+    config:
+      enabled: true
+      tags:
+        - silver
+
+      database: desafio-ebanx
+      dataset: silver
+      materialized: table
+      alias: cambio
+
+      persist_docs:
+        relation: true
+        columns: true
+
+
+    columns:
+        - name: mes
+          description: Mês ao que os valores cambiais se referem
+          tests:
+            - not_null
+
+        - name: mes_num
+          description: Número do mês
+          tests:
+            - not_null
+
+        - name: moeda
+          description: A qual moeda o valor cambial se refere
+          tests:
+            - not_null
+
+        - name: valor
+          description: O valor, em dólar, que cada moeda vale, para o mês de referência
+          tests:
+            - not_null
+
+        - name: nome_moeda
+          description: O nome da moeda, por extenso
+          tests:
+            - not_null
+
+        - name: carregado_em
+          description: Data e hora que os dados foram carregados na tabela
+          tests:
+            - not_null

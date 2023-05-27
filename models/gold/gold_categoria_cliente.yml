@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: gold_categoria_cliente
+    description: |
+      Tabela agregada que traz as categorias em que o cliente fez compras, agrupada por cliente e com as categorias separadas por vírgula.
+    config:
+      enabled: true
+      tags:
+        - gold
+
+      database: desafio-ebanx
+      dataset: gold
+      materialized: table
+      alias: categoria_cliente
+
+      persist_docs:
+        relation: true
+        columns: true
+
+
+    columns:
+        - name: nome
+          description: Nome do cliente
+          tests:
+            - not_null
+
+        - name: lista_categoria
+          description: Lista com as categorias em que o cliente fez compra, separadas por vírgula
+          
+        - name: carregado_em
+          description: Data e hora que os dados foram carregados na tabela
+          tests:
+            - not_null

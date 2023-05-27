@@ -1,0 +1,9 @@
+marlon:
+    target: bronze
+    outputs:
+        bronze:
+            type: bigquery
+            project: desafio-ebanx
+            dataset: bronze
+            method: oauth
+            threads: 6

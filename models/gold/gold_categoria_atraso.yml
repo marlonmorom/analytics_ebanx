@@ -1,0 +1,36 @@
+---
+version: 2
+
+models:
+  - name: gold_categoria_atraso
+    description: |
+      Tabela agregada que a traz quantidade de compras pagas com atraso, de acordo com cada categoria da compra
+    config:
+      enabled: true
+      tags:
+        - gold
+
+      database: desafio-ebanx
+      dataset: gold
+      materialized: table
+      alias: categoria_atraso
+
+      persist_docs:
+        relation: true
+        columns: true
+
+
+    columns:
+        - name: categoria
+          description: Categoria da compra
+          tests:
+            - not_null
+            - unique
+
+        - name: quantidade_compras
+          description: Quantidade de compras com atraso, referente à categoria
+
+        - name: carregado_em
+          description: Data e hora que os dados foram carregados na tabela
+          tests:
+            - not_null
