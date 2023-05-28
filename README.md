@@ -1,15 +1,7 @@
-Welcome to your new dbt project!
+### Desafio Ebanx para Analytics Engineer
 
-### Using the starter project
+Utilização de dbt para modelagem de dados no BigQuery e divisão em camadas de uso, de acordo com o tratamento e a agregação dos dados necessários, testes e linhagem.
 
-Try running the following commands:
-- dbt run
-- dbt test
+Uso de Looker Studio para criação de dashboard para responder as questões de negócio.
 
-
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+Todos os dados utilizados nesse desafio são <b>fictícios</b>, sendo assim, nenhum dos dados são de clientes da Ebanx ou qualquer outra empresa.
