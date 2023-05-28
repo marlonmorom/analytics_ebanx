@@ -1,19 +1,16 @@
 {% set valor_multa = 0.25 %}
 
+WITH aux AS (
+
 SELECT
     id,
     id_cliente,
     data_vencimento,
-    CASE WHEN data_pagamento != "NULL"
-    THEN DATE(data_pagamento) 
-    ELSE NULL
-    END AS data_pagamento,
+    IF(data_pagamento != "NULL", DATE(data_pagamento), NULL) AS data_pagamento,
     categoria,
     status,
-    co.valor,
-    co.moeda,
-    COALESCE(ca.valor,1) AS cotacao,
-    ROUND(co.valor*COALESCE(ca.valor,1),2) AS valor_dolar,
+    valor,
+    moeda,
     CASE 
       WHEN status = "Pago" AND data_vencimento>=DATE(data_pagamento)
         THEN "Pago sem Atraso"
@@ -34,14 +31,19 @@ SELECT
         THEN DATE_DIFF(current_date(), data_vencimento, DAY) 
         END AS dias_atraso,
 
-    IF(status = "Pago" AND DATE_DIFF(DATE(data_pagamento), data_vencimento, DAY)>0 , {{valor_multa}}*DATE_DIFF(DATE(data_pagamento), data_vencimento, DAY) , 0) AS multa_dolar,
-
+    IF(status = "Pago" AND DATE_DIFF(DATE(data_pagamento), data_vencimento, DAY)>0 , 0.25*DATE_DIFF(DATE(data_pagamento), data_vencimento, DAY) , 0) AS multa_dolar,
+   FROM
+  {{ref('seed_compras')}}
+)
     
-
+SELECT 
+    a.*,
+    COALESCE(ca.valor,1) AS cotacao,
+    ROUND(a.valor*COALESCE(ca.valor,1),2) AS valor_dolar,
 FROM
-  {{ref('seed_compras')}} AS co
+  aux AS a
 
 LEFT JOIN {{ref('silver_cambio')}} AS ca
 
-ON EXTRACT(MONTH from co.data_vencimento) = ca.mes_num
-AND co.moeda = ca.moeda
+ON EXTRACT(MONTH FROM COALESCE(a.data_pagamento,a.data_vencimento)) = ca.mes_num
+AND a.moeda = ca.moeda
