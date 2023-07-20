@@ -31,7 +31,7 @@ SELECT
         THEN DATE_DIFF(current_date(), data_vencimento, DAY) 
         END AS dias_atraso,
 
-    IF(status = "Pago" AND DATE_DIFF(DATE(data_pagamento), data_vencimento, DAY)>0 , 0.25*DATE_DIFF(DATE(data_pagamento), data_vencimento, DAY) , 0) AS multa_dolar,
+    IF(status = "Pago" AND DATE_DIFF(DATE(data_pagamento), data_vencimento, DAY)>0 , {{valor_multa}}*DATE_DIFF(DATE(data_pagamento), data_vencimento, DAY) , 0) AS multa_dolar,
    FROM
   {{ref('seed_compras')}}
 )
