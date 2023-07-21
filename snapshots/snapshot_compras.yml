@@ -6,7 +6,7 @@ snapshots:
     docs:
       show: true
     config:
-      tags: snapshot_silver_compras
+      tags: snapshot_seed
 
     columns:
         - name: id
@@ -14,14 +14,10 @@ snapshots:
           tests:
             - not_null
 
-
         - name: id_cliente
           description: id único do cliente
           tests:
             - not_null
-            - relationships:
-                to: ref('silver_clientes')
-                field: id
 
         - name: data_vencimento
           description: Data de vencimento da compra
@@ -51,36 +47,3 @@ snapshots:
           tests:
             - accepted_values:
                 values: ['Pago', 'Pendente']
-    
-        - name: status_vencimento
-          description: |
-              Status referente à data de vencimento. [Pago sem Atraso, Pago com Atraso,
-              Parcialmente Vencido, Não Vencido]
-          tests:
-            - accepted_values:
-                values: ['Pago sem Atraso', 'Pago com Atraso', 'Parcialmente Vencido', 'Não Vencido']
-
-        - name: dias_atraso
-          description: |
-              Quantos dias a compra está/foi paga com atraso. Números negativos indicam que a compra
-              ainda não venceu ou que foi paga sem atrasos
-          tests:
-            - not_null
-
-        - name: multa_dolar
-          description: |
-              Para compras que têm dias em atraso, é calculado o valor da multa, em dólares
-          tests:
-            - not_null
-
-        - name: cotacao
-          description: |
-              Quanto cada moeda vale em dólar, na data de vencimento
-          tests:
-            - not_null
-
-        - name: valor_dolar
-          description: |
-              Valor da compra convertido em dólar
-          tests:
-            - not_null

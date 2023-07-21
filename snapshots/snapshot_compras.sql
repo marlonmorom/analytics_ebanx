@@ -10,6 +10,6 @@
         )
     }}
 
-    select * from {{ source('silver', 'silver_compras')}}
+    select * from {{ ref('seed_compras')}}
 
 {% endsnapshot %}
