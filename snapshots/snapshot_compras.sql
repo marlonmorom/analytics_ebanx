@@ -6,7 +6,7 @@
             target_schema='snapshots',
             unique_key='id',
             strategy='check',
-            check_cols=['status']
+            check_cols=['status','data_pagamento']
         )
     }}
 
