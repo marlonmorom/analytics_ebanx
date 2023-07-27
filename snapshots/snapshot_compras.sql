@@ -3,7 +3,7 @@
     {{
         config(
             target_database='desafio-ebanx',
-            target_schema='snapshots',
+            target_dataset='snapshots',
             unique_key='id',
             strategy='check',
             check_cols=['status','data_pagamento']
