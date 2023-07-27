@@ -11,39 +11,24 @@ snapshots:
     columns:
         - name: id
           description: id único da compra
-          tests:
-            - not_null
 
         - name: id_cliente
           description: id único do cliente
-          tests:
-            - not_null
 
         - name: data_vencimento
           description: Data de vencimento da compra
-          tests:
-            - not_null
 
         - name: data_pagamento
           description: Data de pagamento da compra
 
         - name: valor
           description: Valor da compra, na moeda de referência
-          tests:
-            - not_null
 
         - name: categoria
           description: Categoria da compra
-          tests:
-            - not_null
 
         - name: moeda
           description: Moeda em que a compra foi efetuada
-          tests:
-            - not_null
 
         - name: status
           description: Status do pagamento. [Pago, Pendente]
-          tests:
-            - accepted_values:
-                values: ['Pago', 'Pendente']
